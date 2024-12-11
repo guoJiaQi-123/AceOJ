@@ -12,7 +12,7 @@
       </a-layout-content>
 
       <!--页脚-->
-      <a-layout-footer class="footer"> Tyut —— OJ在线判题系统 </a-layout-footer>
+      <a-layout-footer class="footer"> Tyut —— OJ在线判题系统</a-layout-footer>
     </a-layout>
   </div>
 </template>
@@ -24,6 +24,7 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 #basicLayout .header {
   margin-bottom: 16px;
   padding: 14px;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5) inset;
 }
 
 #basicLayout .content {

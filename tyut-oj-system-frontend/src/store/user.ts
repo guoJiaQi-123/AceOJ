@@ -4,7 +4,7 @@ export default {
   namespaced: true,
 
   state: {
-    loginUser: { userName: "未登录" },
+    loginUser: { userName: "未登录", role: "noLogin" },
   },
 
   getters: {},

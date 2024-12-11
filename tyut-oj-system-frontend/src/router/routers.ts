@@ -12,4 +12,17 @@ export const routes: Array<RouteRecordRaw> = [
     name: "关于我的",
     component: () => import("../views/AboutView.vue"),
   },
+  {
+    path: "/admin",
+    name: "管理员",
+    component: () => import("../views/AdminView.vue"),
+    meta: {
+      access: "canAdmin",
+    },
+  },
+  {
+    path: "/noAuth",
+    name: "没权限",
+    component: () => import("../views/NoAuthView.vue"),
+  },
 ];

@@ -39,7 +39,7 @@ const store = useStore();
 const router = useRouter();
 
 setTimeout(() => {
-  store.dispatch("user/getLoginUser", { userName: "LAL" });
+  store.dispatch("user/getLoginUser", { userName: "LAL", role: "admin" });
 }, 3000);
 
 //默认主页
