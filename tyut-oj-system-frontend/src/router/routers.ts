@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
+import accessEnum from "@/access/accessEnum";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -14,15 +15,18 @@ export const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/admin",
-    name: "管理员",
+    name: "管理员可见",
     component: () => import("../views/AdminView.vue"),
     meta: {
-      access: "canAdmin",
+      access: accessEnum.ADMIN,
     },
   },
   {
     path: "/noAuth",
     name: "没权限",
     component: () => import("../views/NoAuthView.vue"),
+    meta: {
+      isHideView: true,
+    },
   },
 ];

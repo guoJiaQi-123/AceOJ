@@ -1,5 +1,5 @@
 <template>
-  <a-row id="globalHeader" style="margin-bottom: 16px" align="center">
+  <a-row id="globalHeader" align="center" :wrap="false">
     <a-col flex="auto">
       <a-menu
         mode="horizontal"
@@ -18,7 +18,7 @@
             </div>
           </a>
         </a-menu-item>
-        <a-menu-item v-for="item in routes" :key="item.path">
+        <a-menu-item v-for="item in visibleRouter" :key="item.path">
           {{ item.name }}
         </a-menu-item>
       </a-menu>
@@ -31,15 +31,35 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { routes } from "@/router/routers";
 import { useStore } from "vuex";
+import checkAccess from "@/access/checkAccess";
+import accessEnum from "@/access/accessEnum";
 
 const store = useStore();
 const router = useRouter();
 
+// 需要展示的路由
+const visibleRouter = computed(() => {
+  const loginUser = store.state.user.loginUser;
+  console.log(loginUser);
+  return routes.filter((value, index) => {
+    if (value.meta?.isHideView) {
+      return false;
+    }
+    // 根据权限过滤菜单
+    if (!checkAccess(loginUser, value?.meta?.access as string)) {
+      return false;
+    }
+    return true;
+  });
+});
 setTimeout(() => {
-  store.dispatch("user/getLoginUser", { userName: "LAL", role: "admin" });
+  store.dispatch("user/getLoginUser", {
+    userName: "LAL",
+    userRole: accessEnum.ADMIN,
+  });
 }, 3000);
 
 //默认主页
