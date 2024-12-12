@@ -1,9 +1,9 @@
 <template>
-  <a-row id="globalHeader" align="center" :wrap="false">
+  <a-row id="globalHeader" :wrap="false" align="center">
     <a-col flex="auto">
       <a-menu
-        mode="horizontal"
         :selected-keys="selectedKeys"
+        mode="horizontal"
         @menu-item-click="doMenuClick"
       >
         <a-menu-item
@@ -13,7 +13,7 @@
         >
           <a href="https://www.tyut.edu.cn/" target="_blank">
             <div class="title-bar">
-              <img src="@/assets/logo.png" alt="" class="logo" />
+              <img alt="" class="logo" src="@/assets/logo.png" />
               <div class="title">TYUT - OJ在线判题平台</div>
             </div>
           </a>
@@ -29,7 +29,7 @@
   </a-row>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import { routes } from "@/router/routers";

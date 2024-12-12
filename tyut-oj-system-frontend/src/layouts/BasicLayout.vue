@@ -16,7 +16,7 @@
     </a-layout>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import GlobalHeader from "@/components/GlobalHeader.vue";
 </script>
 
