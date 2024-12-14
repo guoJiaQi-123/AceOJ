@@ -27,8 +27,7 @@
 <style scoped>
 #userLayout {
   text-align: center;
-  background: url(https://gw.alipayobjects.com/zos/rmsportal/FfdJeJRQWjEeGTpqgBKj.png)
-    0% 0% / 100% 100%;
+  background: url(/src/assets/background.png) 0% 0% / 100% 100%;
 }
 
 #userLayout .header {
