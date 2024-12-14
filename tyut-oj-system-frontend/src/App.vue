@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <BasicLayout></BasicLayout>
+    <template v-if="route.path.startsWith('/user')">
+      <router-view></router-view>
+    </template>
+    <template v-else>
+      <BasicLayout></BasicLayout>
+    </template>
   </div>
 </template>
 <script lang="ts" setup>
 import BasicLayout from "@/layouts/BasicLayout.vue";
 import { onMounted } from "vue";
 import axios from "axios";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const doInit = () => {
   console.log("hello 欢迎来到我的项目");
 };

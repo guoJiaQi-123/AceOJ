@@ -55,12 +55,12 @@ const visibleRouter = computed(() => {
     return true;
   });
 });
-setTimeout(() => {
-  store.dispatch("user/getLoginUser", {
-    userName: "LAL",
-    userRole: accessEnum.ADMIN,
-  });
-}, 3000);
+// setTimeout(() => {
+//   store.dispatch("user/getLoginUser", {
+//     userName: "LAL",
+//     userRole: accessEnum.ADMIN,
+//   });
+// }, 3000);
 
 //默认主页
 const selectedKeys = ref(["/"]);
