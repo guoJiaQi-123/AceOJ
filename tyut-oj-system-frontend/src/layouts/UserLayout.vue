@@ -5,10 +5,10 @@
       <a-layout-header class="header">
         <a-space>
           <img
-            style="color: white"
             alt=""
             class="logo"
             src="@/assets/logo.png"
+            style="color: white"
           />
           <h1 class="title">TYUT - OJ在线判题平台</h1>
         </a-space>

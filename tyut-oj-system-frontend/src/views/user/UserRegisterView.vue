@@ -2,11 +2,11 @@
   <div id="UserLoginView">
     <h1 style="margin-bottom: 50px; margin-top: 10%">用户注册</h1>
     <a-form
-      style="max-width: 33%; margin: 0 auto"
       :model="form"
-      @submit="handleSubmit"
-      label-align="left"
       auto-label-width
+      label-align="left"
+      style="max-width: 33%; margin: 0 auto"
+      @submit="handleSubmit"
     >
       <a-form-item field="账号" label="账号">
         <a-input v-model="form.userAccount" placeholder="请输入账号" />
@@ -17,7 +17,7 @@
           placeholder="请输入密码"
         />
       </a-form-item>
-      <a-form-item required field="确认密码" label="确认密码">
+      <a-form-item field="确认密码" label="确认密码" required>
         <a-input-password
           v-model="form.checkPassword"
           placeholder="请输入密码"
@@ -27,14 +27,14 @@
         <a-button html-type="submit" style="width: 240px" type="primary"
           >注册
         </a-button>
-        <a-button @click="toLoginView" style="width: 240px" id="register"
+        <a-button id="register" style="width: 240px" @click="toLoginView"
           >返回登录页
         </a-button>
       </a-form-item>
     </a-form>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { reactive } from "vue";
 import { Message } from "@arco-design/web-vue";
 import { useRouter } from "vue-router";

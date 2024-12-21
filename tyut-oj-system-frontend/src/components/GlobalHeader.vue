@@ -11,12 +11,12 @@
           :style="{ padding: 0, marginRight: '38px' }"
           disabled
         >
-          <a href="https://www.tyut.edu.cn/" target="_blank">
+          <div @click="logo()">
             <div class="title-bar">
               <img alt="" class="logo" src="@/assets/logo.png" />
               <div class="title">TYUT - OJ在线判题平台</div>
             </div>
-          </a>
+          </div>
         </a-menu-item>
         <a-menu-item v-for="item in visibleRouter" :key="item.path">
           {{ item.name }}
@@ -35,11 +35,15 @@ import { computed, ref } from "vue";
 import { routes } from "@/router/routers";
 import { useStore } from "vuex";
 import checkAccess from "@/access/checkAccess";
-import accessEnum from "@/access/accessEnum";
 
 const store = useStore();
 const router = useRouter();
 
+const logo = () => {
+  router.push({
+    path: "/",
+  });
+};
 // 需要展示的路由
 const visibleRouter = computed(() => {
   const loginUser = store.state.user.loginUser;

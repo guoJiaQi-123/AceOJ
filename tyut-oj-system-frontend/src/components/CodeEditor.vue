@@ -1,7 +1,7 @@
 <template>
   <div id="code-editor" ref="codeEditorRef" style="min-height: 400px"></div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import * as monaco from "monaco-editor";
 import { defineProps, onMounted, ref, toRaw, withDefaults } from "vue";
 

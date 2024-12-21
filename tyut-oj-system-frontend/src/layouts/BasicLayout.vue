@@ -28,20 +28,14 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 }
 
 #basicLayout .content {
-  background: linear-gradient(
-    to bottom right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    purple
-  );
+  background: linear-gradient(to right, #fefefe, #fff);
   margin-bottom: 16px;
+  padding: 20px;
 }
 
 #basicLayout .footer {
-  margin-bottom: 16px;
+  background: #efefef;
+  padding: 14px;
   position: sticky;
   bottom: 0;
   right: 0;
