@@ -20,7 +20,7 @@ public enum JudgeInfoMessageEnum {
     MEMORY_LIMIT_EXCEEDED("内存溢出", "Memory Limit Exceeded"),
     TIME_LIMIT_EXCEEDED("超时", "Time Limit Exceeded"),
     PRESENTATION_ERROR("展示错误", "Presentation Error"),
-    WAITING("等待中","Waiting"),
+    WAITING("等待中", "Waiting"),
     OUTPUT_LIMIT_EXCEEDED("输出溢出", "Output Limit Exceeded"),
     DANGEROUS_OPERATION("危险操作", "Dangerous Operation"),
     RUNTIME_ERROR("运行错误", "Runtime Error"),

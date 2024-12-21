@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 public class QuestionSubmit implements Serializable {
     /**
-     * id
+     * id IdType.ASSIGN_ID 非连续但自增
      */
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;

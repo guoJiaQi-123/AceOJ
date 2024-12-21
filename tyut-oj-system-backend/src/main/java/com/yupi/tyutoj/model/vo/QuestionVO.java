@@ -6,6 +6,7 @@ import com.yupi.tyutoj.model.entity.Question;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * 后端要向前端传输的数据
  */
 @Data
-public class QuestionVO {
+public class QuestionVO implements Serializable {
     /**
      * id
      */
@@ -79,6 +80,7 @@ public class QuestionVO {
      * 创建人
      */
     private UserVO userVO;
+
     private static final long serialVersionUID = 1L;
 
     /**

@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
 @Data
-public class QuestionSumitAddRequest implements Serializable {
+public class QuestionSubmitAddRequest implements Serializable {
 
 
     /**

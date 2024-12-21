@@ -1,6 +1,5 @@
 package com.yupi.tyutoj.model.enums;
 
-import io.swagger.models.auth.In;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
@@ -15,10 +14,10 @@ import java.util.stream.Collectors;
  */
 public enum QuestionSubmitStatusEnum {
 
-    WATING("等待中", 0),
+    WAITING("等待中", 0),
     RUNNING("判题中", 1),
     SUCCESS("成功", 2),
-    FAILED("失败",3);
+    FAILED("失败", 3);
 
     private final String text;
 

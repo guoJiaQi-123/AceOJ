@@ -225,7 +225,7 @@ public class QuestionController {
     // endregion
 
     /**
-     * 编辑（用户）
+     * 编辑（用户编辑）
      *
      * @param questionEditRequest
      * @param request
@@ -239,19 +239,22 @@ public class QuestionController {
         Question question = new Question();
         BeanUtils.copyProperties(questionEditRequest, question);
         List<String> tags = questionEditRequest.getTags();
+        // 题目标签转json字符串
         if (tags != null) {
             question.setTags(JSONUtil.toJsonStr(tags));
         }
+        // 题目用例转json字符串
         List<JudgeCase> judgeCase = questionEditRequest.getJudgeCase();
         if (judgeCase != null) {
             question.setJudgeCase(gson.toJson(judgeCase));
         }
+        // 题目配置转json字符串
         JudgeConfig judgeConfig = questionEditRequest.getJudgeConfig();
         if (judgeConfig != null) {
             question.setJudgeConfig(gson.toJson(judgeConfig));
         }
         // 参数校验
-        questionService.validQuestion(question, false);
+        questionService.validQuestion(question, true);
         User loginUser = userService.getLoginUser(request);
         long id = questionEditRequest.getId();
         // 判断是否存在
