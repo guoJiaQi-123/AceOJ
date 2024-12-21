@@ -1,9 +1,8 @@
 import { RouteRecordRaw } from "vue-router";
-import HomeView from "@/views/HomeView.vue";
 import accessEnum from "@/access/accessEnum";
 import UserLayout from "@/layouts/UserLayout.vue";
-import UserLoginView from "@/views/UserLoginView.vue";
-import UserRegisterView from "@/views/UserRegisterView.vue";
+import UserLoginView from "@/views/user/UserLoginView.vue";
+import UserRegisterView from "@/views/user/UserRegisterView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -29,7 +28,12 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "浏览题目",
-    component: HomeView,
+    component: () => import("../views/HomeView.vue"),
+  },
+  {
+    path: "/code",
+    name: "做题",
+    component: () => import("../views/ExampleView.vue"),
   },
   {
     path: "/about",
