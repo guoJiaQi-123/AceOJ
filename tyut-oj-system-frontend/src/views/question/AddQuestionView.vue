@@ -2,19 +2,23 @@
   <div id="addQuestionView"><h1 style="margin-left: 8%">创建题目</h1></div>
   <a-form :model="form" :style="{ width: '90%' }" @submit="handleSubmit">
     <a-form-item field="title" label="题目标题">
-      <a-input v-model="form.title" placeholder="请输入标题"></a-input>
+      <a-input v-model="form.title" placeholder="请输入题目标题"></a-input>
     </a-form-item>
-    <a-form-item field="tags" label="标签">
-      <a-input-tag v-model="form.tags" placeholder="请输入标签" allow-clear />
+    <a-form-item field="tags" label="题目标签">
+      <a-input-tag
+        v-model="form.tags"
+        placeholder="请输入题目标签"
+        allow-clear
+      />
     </a-form-item>
-    <a-form-item field="content" label="内容">
+    <a-form-item field="content" label="题目内容">
       <MdEditor
         :value="form.content"
         :handle-change="onContentChange"
         style="min-width: 100%"
       ></MdEditor>
     </a-form-item>
-    <a-form-item field="answer" label="答案">
+    <a-form-item field="answer" label="题目答案">
       <MdEditor
         :value="form.answer"
         :handle-change="onAnswerChange"
@@ -22,33 +26,48 @@
       ></MdEditor>
     </a-form-item>
 
-    <a-form-item label="判题配置" :content-flex="false" :merge-props="false">
-      <a-space direction="vertical" style="min-width: 480px">
-        <a-form-item field="judgeConfig.timeLimit" label="时间限制">
+    <a-form-item label="判题限制" :content-flex="false" :merge-props="false">
+      <a-space direction="vertical">
+        <a-form-item
+          field="judgeConfig.timeLimit"
+          label="时间限制（单位：ms）"
+          style="min-width: 800px"
+        >
           <a-input-number
             v-model="form.judgeConfig.timeLimit"
             placeholder="请输入时间消耗"
             mode="button"
             size="large"
             min="0"
+            style="max-width: 150px"
           />
         </a-form-item>
-        <a-form-item field="judgeConfig.memoryLimit" label="内存限制">
+        <a-form-item
+          field="judgeConfig.memoryLimit"
+          label="内存限制（单位：b）"
+          style="min-width: 800px"
+        >
           <a-input-number
             v-model="form.judgeConfig.memoryLimit"
             placeholder="请输入内存限制"
             mode="button"
             size="large"
             min="0"
+            style="max-width: 150px"
           />
         </a-form-item>
-        <a-form-item field="judgeConfig.stackLimit" label="堆栈限制">
+        <a-form-item
+          field="judgeConfig.stackLimit"
+          label="堆栈限制（单位：b）"
+          style="min-width: 800px"
+        >
           <a-input-number
             v-model="form.judgeConfig.stackLimit"
             placeholder="请输入堆栈限制"
             mode="button"
             size="large"
             min="0"
+            style="max-width: 150px"
           />
         </a-form-item>
       </a-space>
@@ -123,12 +142,12 @@ let form = ref({
     },
   ],
   judgeConfig: {
-    memoryLimit: 1000,
-    stackLimit: 1000,
-    timeLimit: 1000,
+    memoryLimit: 0,
+    stackLimit: 0,
+    timeLimit: 0,
   },
-  tags: ["栈", "简单"],
-  title: "A + B",
+  tags: [],
+  title: "",
 });
 
 //根据题目id获取老的数据
@@ -185,7 +204,7 @@ const doSubmit = async () => {
         path: "/manage/question",
       });
     } else {
-      Message.error("更新失败" + res.message);
+      Message.error("更新失败，" + res.message);
     }
   } else {
     // 添加
@@ -198,7 +217,7 @@ const doSubmit = async () => {
         path: "/",
       });
     } else {
-      Message.error("创建失败" + res.message);
+      Message.error("创建失败，" + res.message);
     }
   }
 };

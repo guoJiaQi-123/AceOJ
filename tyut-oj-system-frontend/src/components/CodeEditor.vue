@@ -1,23 +1,37 @@
 <template>
-  <div id="code-editor" ref="codeEditorRef" style="min-height: 400px"></div>
+  <div
+    id="code-editor"
+    ref="codeEditorRef"
+    style="min-height: 400px; height: 70vh"
+  ></div>
 </template>
 <script lang="ts" setup>
 import * as monaco from "monaco-editor";
-import { defineProps, onMounted, ref, toRaw, withDefaults } from "vue";
+import {
+  defineProps,
+  onMounted,
+  ref,
+  toRaw,
+  watchEffect,
+  withDefaults,
+} from "vue";
 
 // 外部组件传值
 interface Props {
   value: string;
+  language: string;
   handleChange: (v: string) => void;
 }
 
 // 给默认值
 const props = withDefaults(defineProps<Props>(), {
   value: () => "",
+  language: () => "java",
   handleChange: (v: string) => {
     console.log(v);
   },
 });
+
 const codeEditorRef = ref();
 const codeEditor = ref();
 onMounted(() => {
@@ -29,7 +43,7 @@ onMounted(() => {
     // 设置编辑器的初始内容，来自 props.value
     value: props.value,
     // 设置编辑器的语言为 Java
-    language: "java",
+    language: props.language,
     // 启用自动布局，使编辑器能够自动调整大小以适应容器
     automaticLayout: true,
     // 启用小地图，用于提供代码的概览

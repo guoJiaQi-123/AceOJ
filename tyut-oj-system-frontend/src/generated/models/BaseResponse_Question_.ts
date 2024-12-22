@@ -2,8 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type BaseResponse_boolean_ = {
+import type { Question } from "./Question";
+
+export type BaseResponse_Question_ = {
   code?: number;
-  data?: boolean;
+  data?: Question;
   message?: string;
 };

@@ -3,15 +3,14 @@
 /* tslint:disable */
 /* eslint-disable */
 export type UserQueryRequest = {
-    current?: number;
-    id?: number;
-    mpOpenId?: string;
-    pageSize?: number;
-    sortField?: string;
-    sortOrder?: string;
-    unionId?: string;
-    userName?: string;
-    userProfile?: string;
-    userRole?: string;
+  current?: number;
+  id?: number;
+  mpOpenId?: string;
+  pageSize?: number;
+  sortField?: string;
+  sortOrder?: string;
+  unionId?: string;
+  userName?: string;
+  userProfile?: string;
+  userRole?: string;
 };
-
