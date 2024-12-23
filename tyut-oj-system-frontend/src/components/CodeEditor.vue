@@ -49,9 +49,9 @@ onMounted(() => {
     // 启用小地图，用于提供代码的概览
     minimap: {
       enabled: true,
-      scale: 20,
-      sectionHeaderFontSize: 20,
-      maxColumn: 100,
+      scale: 2,
+      // sectionHeaderFontSize: 9,
+      maxColumn: 40,
     },
     // 显示行号
     lineNumbers: "on",
