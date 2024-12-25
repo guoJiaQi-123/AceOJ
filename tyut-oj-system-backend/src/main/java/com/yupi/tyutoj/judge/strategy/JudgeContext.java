@@ -1,7 +1,7 @@
 package com.yupi.tyutoj.judge.strategy;
 
 import com.yupi.tyutoj.model.dto.question.JudgeCase;
-import com.yupi.tyutoj.model.dto.question.JudgeInfo;
+import com.yupi.tyutoj.judge.codesendbox.model.JudgeInfo;
 import com.yupi.tyutoj.model.entity.Question;
 import com.yupi.tyutoj.model.entity.QuestionSubmit;
 import lombok.Data;
@@ -29,7 +29,7 @@ public class JudgeContext {
      */
     private List<String> outputList;
     /**
-     * 输入输出用例
+     * 创建题目时指定的正确的输入输出用例
      */
     private List<JudgeCase> judgeCaseList;
     /**

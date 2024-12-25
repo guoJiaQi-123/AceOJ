@@ -7,14 +7,7 @@
 </template>
 <script lang="ts" setup>
 import * as monaco from "monaco-editor";
-import {
-  defineProps,
-  onMounted,
-  ref,
-  toRaw,
-  watchEffect,
-  withDefaults,
-} from "vue";
+import { defineProps, onMounted, ref, toRaw, watch, withDefaults } from "vue";
 
 // 外部组件传值
 interface Props {
@@ -31,6 +24,18 @@ const props = withDefaults(defineProps<Props>(), {
     console.log(v);
   },
 });
+
+watch(
+  () => props.language,
+  () => {
+    if (codeEditor.value) {
+      monaco.editor.setModelLanguage(
+        toRaw(codeEditor.value).getModel(),
+        props.language
+      );
+    }
+  }
+);
 
 const codeEditorRef = ref();
 const codeEditor = ref();

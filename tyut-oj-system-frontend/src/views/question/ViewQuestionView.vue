@@ -52,7 +52,9 @@
             >
               <a-option>java</a-option>
               <a-option>cpp</a-option>
+              <a-option>c</a-option>
               <a-option>go</a-option>
+              <a-option>python</a-option>
             </a-select>
           </a-form-item>
         </a-form>
@@ -97,6 +99,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   id: () => "",
 });
+
 const doSubmit = async () => {
   if (!question.value?.id) return;
   const res = await QuestionSumitControllerService.doQuestionSumitUsingPost({
@@ -120,9 +123,11 @@ const loadData = async () => {
     Message.error("加载失败" + res.message);
   }
 };
+
 const changeCode = (value: string) => {
   form.value.code = value;
 };
+
 onMounted(() => {
   loadData();
 });
