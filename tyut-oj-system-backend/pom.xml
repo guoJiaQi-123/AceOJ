@@ -12,7 +12,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yupi</groupId>
-    <artifactId>tyutoj-system-backend</artifactId>
+    <artifactId>tyut-oj-system-backend-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>tyut-oj</name>
     <properties>
