@@ -10,7 +10,7 @@ import com.yupi.tyutoj.judge.codesendbox.model.ExecuteCodeResponse;
 import com.yupi.tyutoj.judge.strategy.JudgeContext;
 import com.yupi.tyutoj.judge.strategy.JudgeManger;
 import com.yupi.tyutoj.model.dto.question.JudgeCase;
-import com.yupi.tyutoj.judge.codesendbox.model.JudgeInfo;
+import com.yupi.tyutoj.model.dto.question.JudgeInfo;
 import com.yupi.tyutoj.model.entity.Question;
 import com.yupi.tyutoj.model.entity.QuestionSubmit;
 import com.yupi.tyutoj.model.enums.QuestionSubmitStatusEnum;

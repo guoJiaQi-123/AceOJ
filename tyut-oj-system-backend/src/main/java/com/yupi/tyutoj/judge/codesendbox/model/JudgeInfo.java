@@ -1,4 +1,4 @@
-package com.yupi.tyutoj.judge.codesendbox.model;
+package com.yupi.tyutoj.model.dto.question;
 
 import lombok.Data;
 

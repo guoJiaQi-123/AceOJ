@@ -3,7 +3,7 @@ package com.yupi.tyutoj.judge.codesendbox.impl;
 import com.yupi.tyutoj.judge.codesendbox.CodeSendBox;
 import com.yupi.tyutoj.judge.codesendbox.model.ExecuteCodeRequest;
 import com.yupi.tyutoj.judge.codesendbox.model.ExecuteCodeResponse;
-import com.yupi.tyutoj.judge.codesendbox.model.JudgeInfo;
+import com.yupi.tyutoj.model.dto.question.JudgeInfo;
 import com.yupi.tyutoj.model.enums.JudgeInfoMessageEnum;
 import com.yupi.tyutoj.model.enums.QuestionSubmitStatusEnum;
 

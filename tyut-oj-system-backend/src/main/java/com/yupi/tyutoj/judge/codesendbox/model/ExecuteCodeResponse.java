@@ -1,5 +1,6 @@
 package com.yupi.tyutoj.judge.codesendbox.model;
 
+import com.yupi.tyutoj.model.dto.question.JudgeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

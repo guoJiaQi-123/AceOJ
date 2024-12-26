@@ -1,6 +1,6 @@
 package com.yupi.tyutoj.judge.strategy;
 
-import com.yupi.tyutoj.judge.codesendbox.model.JudgeInfo;
+import com.yupi.tyutoj.model.dto.question.JudgeInfo;
 import com.yupi.tyutoj.model.entity.QuestionSubmit;
 import org.springframework.stereotype.Service;
 

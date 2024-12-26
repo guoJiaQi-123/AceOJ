@@ -1,13 +1,16 @@
 package com.yupi.tyutoj.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.yupi.tyutoj.judge.codesendbox.model.JudgeInfo;
+import com.yupi.tyutoj.model.dto.question.JudgeConfig;
+import com.yupi.tyutoj.model.dto.question.JudgeInfo;
+import com.yupi.tyutoj.model.entity.Question;
 import com.yupi.tyutoj.model.entity.QuestionSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 后端要向前端传输的数据

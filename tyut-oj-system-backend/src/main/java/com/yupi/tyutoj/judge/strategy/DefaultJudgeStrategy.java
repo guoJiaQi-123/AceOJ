@@ -3,7 +3,7 @@ package com.yupi.tyutoj.judge.strategy;
 import cn.hutool.json.JSONUtil;
 import com.yupi.tyutoj.model.dto.question.JudgeCase;
 import com.yupi.tyutoj.model.dto.question.JudgeConfig;
-import com.yupi.tyutoj.judge.codesendbox.model.JudgeInfo;
+import com.yupi.tyutoj.model.dto.question.JudgeInfo;
 import com.yupi.tyutoj.model.entity.Question;
 import com.yupi.tyutoj.model.enums.JudgeInfoMessageEnum;
 
