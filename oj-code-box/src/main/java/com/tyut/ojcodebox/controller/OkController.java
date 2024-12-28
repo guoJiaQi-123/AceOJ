@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @version v1.0
  * @author OldGj 2024/12/25
- * @apiNote TODO(一句话给出该类描述)
+ * @apiNote 验证项目的控制器
  */
 @RestController("/")
 public class OkController {
-    @GetMapping("health")
+    @GetMapping("/health")
     public String ok() {
         return "ok";
     }

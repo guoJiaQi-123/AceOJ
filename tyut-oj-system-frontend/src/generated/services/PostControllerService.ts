@@ -2,17 +2,19 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BaseResponse_boolean_ } from "../models/BaseResponse_boolean_";
-import type { BaseResponse_long_ } from "../models/BaseResponse_long_";
-import type { BaseResponse_Page_PostVO_ } from "../models/BaseResponse_Page_PostVO_";
-import type { BaseResponse_PostVO_ } from "../models/BaseResponse_PostVO_";
-import type { DeleteRequest } from "../models/DeleteRequest";
-import type { PostAddRequest } from "../models/PostAddRequest";
-import type { PostEditRequest } from "../models/PostEditRequest";
-import type { PostQueryRequest } from "../models/PostQueryRequest";
-import type { PostUpdateRequest } from "../models/PostUpdateRequest";
-import type { CancelablePromise } from "../core/CancelablePromise";
-import { OpenAPI } from "../core/OpenAPI";
+import type {
+  BaseResponse_boolean_,
+  BaseResponse_long_,
+  BaseResponse_Page_PostVO_,
+  BaseResponse_PostVO_,
+  CancelablePromise,
+  DeleteRequest,
+  PostAddRequest,
+  PostEditRequest,
+  PostQueryRequest,
+  PostUpdateRequest
+} from "@/generated";
+import { OpenAPI } from "@/generated";
 import { request as __request } from "../core/request";
 
 export class PostControllerService {

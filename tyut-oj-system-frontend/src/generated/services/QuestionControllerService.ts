@@ -2,19 +2,21 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BaseResponse_boolean_ } from "../models/BaseResponse_boolean_";
-import type { BaseResponse_long_ } from "../models/BaseResponse_long_";
-import type { BaseResponse_Page_Question_ } from "../models/BaseResponse_Page_Question_";
-import type { BaseResponse_Page_QuestionVO_ } from "../models/BaseResponse_Page_QuestionVO_";
-import type { BaseResponse_Question_ } from "../models/BaseResponse_Question_";
-import type { BaseResponse_QuestionVO_ } from "../models/BaseResponse_QuestionVO_";
-import type { DeleteRequest } from "../models/DeleteRequest";
-import type { QuestionAddRequest } from "../models/QuestionAddRequest";
-import type { QuestionEditRequest } from "../models/QuestionEditRequest";
-import type { QuestionQueryRequest } from "../models/QuestionQueryRequest";
-import type { QuestionUpdateRequest } from "../models/QuestionUpdateRequest";
-import type { CancelablePromise } from "../core/CancelablePromise";
-import { OpenAPI } from "../core/OpenAPI";
+import type {
+  BaseResponse_boolean_,
+  BaseResponse_long_,
+  BaseResponse_Page_Question_,
+  BaseResponse_Page_QuestionVO_,
+  BaseResponse_Question_,
+  BaseResponse_QuestionVO_,
+  CancelablePromise,
+  DeleteRequest,
+  QuestionAddRequest,
+  QuestionEditRequest,
+  QuestionQueryRequest,
+  QuestionUpdateRequest
+} from "@/generated";
+import { OpenAPI } from "@/generated";
 import { request as __request } from "../core/request";
 
 export class QuestionControllerService {

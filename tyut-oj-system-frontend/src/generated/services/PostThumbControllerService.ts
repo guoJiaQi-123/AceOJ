@@ -2,10 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BaseResponse_int_ } from "../models/BaseResponse_int_";
-import type { PostThumbAddRequest } from "../models/PostThumbAddRequest";
-import type { CancelablePromise } from "../core/CancelablePromise";
-import { OpenAPI } from "../core/OpenAPI";
+import type { BaseResponse_int_, CancelablePromise, PostThumbAddRequest } from "@/generated";
+import { OpenAPI } from "@/generated";
 import { request as __request } from "../core/request";
 
 export class PostThumbControllerService {

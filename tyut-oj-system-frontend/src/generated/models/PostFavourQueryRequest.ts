@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { PostQueryRequest } from "./PostQueryRequest";
+import type { PostQueryRequest } from "@/generated";
 
 export type PostFavourQueryRequest = {
   current?: number;

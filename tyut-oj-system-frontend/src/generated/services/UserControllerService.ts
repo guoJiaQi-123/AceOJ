@@ -2,23 +2,24 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BaseResponse_boolean_ } from "../models/BaseResponse_boolean_";
-import type { BaseResponse_LoginUserVO_ } from "../models/BaseResponse_LoginUserVO_";
-import type { BaseResponse_long_ } from "../models/BaseResponse_long_";
-import type { BaseResponse_Page_User_ } from "../models/BaseResponse_Page_User_";
-import type { BaseResponse_Page_UserVO_ } from "../models/BaseResponse_Page_UserVO_";
-import type { BaseResponse_User_ } from "../models/BaseResponse_User_";
-import type { BaseResponse_UserVO_ } from "../models/BaseResponse_UserVO_";
-import type { DeleteRequest } from "../models/DeleteRequest";
-import type { UserAddRequest } from "../models/UserAddRequest";
-import type { UserLoginRequest } from "../models/UserLoginRequest";
-import type { UserQueryRequest } from "../models/UserQueryRequest";
-import type { UserRegisterRequest } from "../models/UserRegisterRequest";
-import type { UserUpdateRequest } from "../models/UserUpdateRequest";
-import type { CancelablePromise } from "../core/CancelablePromise";
-import { OpenAPI } from "../core/OpenAPI";
+import type {
+  BaseResponse_boolean_,
+  BaseResponse_LoginUserVO_,
+  BaseResponse_long_,
+  BaseResponse_Page_User_,
+  BaseResponse_Page_UserVO_,
+  BaseResponse_User_,
+  BaseResponse_UserVO_,
+  CancelablePromise,
+  DeleteRequest,
+  UserAddRequest,
+  UserLoginRequest,
+  UserQueryRequest,
+  UserRegisterRequest,
+  UserUpdateRequest
+} from "@/generated";
+import { OpenAPI, UserUpdateMyRequest } from "@/generated";
 import { request as __request } from "../core/request";
-import { UserUpdateMyRequest } from "@/generated";
 
 export class UserControllerService {
   /**

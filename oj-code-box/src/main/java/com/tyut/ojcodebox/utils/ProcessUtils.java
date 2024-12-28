@@ -36,29 +36,29 @@ public class ProcessUtils {
                 //逐行读取
                 String compileOutputLine;
                 while ((compileOutputLine = bufferedReader.readLine()) != null) {
-                    compileOutputStringBuilder.append(compileOutputLine);
+                    compileOutputStringBuilder.append(compileOutputLine).append("\n");
                 }
                 executeMessage.setMessage(compileOutputStringBuilder.toString());
                 System.out.println(compileOutputStringBuilder);
             } else {
-                //异常退出
+                // 异常退出
                 System.out.println(opName + "失败，错误码" + exitValue);
-                //分批获取进程的正常输出
+                // 分批获取进程的正常输出
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(runProcess.getInputStream()));
                 StringBuilder compileOutputStringBuilder = new StringBuilder();
                 //逐行读取
                 String compileOutputLine;
                 while ((compileOutputLine = bufferedReader.readLine()) != null) {
-                    compileOutputStringBuilder.append(compileOutputLine);
+                    compileOutputStringBuilder.append(compileOutputLine).append("\n");
                 }
                 executeMessage.setMessage(compileOutputStringBuilder.toString());
-                //分批获取进程的错误输出
+                // 分批获取进程的错误输出
                 BufferedReader errorBufferedReader = new BufferedReader(new InputStreamReader(runProcess.getErrorStream()));
                 StringBuilder errorCompileOutputStringBuilder = new StringBuilder();
                 //逐行读取
                 String errorCompileOutputLine;
                 while ((errorCompileOutputLine = errorBufferedReader.readLine()) != null) {
-                    errorCompileOutputStringBuilder.append(errorCompileOutputLine);
+                    errorCompileOutputStringBuilder.append(errorCompileOutputLine).append("\n");
                 }
                 executeMessage.setErrorMessage(errorCompileOutputStringBuilder.toString());
             }

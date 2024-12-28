@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CancelablePromise } from "../core/CancelablePromise";
-import { OpenAPI } from "../core/OpenAPI";
+import type { CancelablePromise } from "@/generated";
+import { OpenAPI } from "@/generated";
 import { request as __request } from "../core/request";
 
 export class WxMpControllerService {
