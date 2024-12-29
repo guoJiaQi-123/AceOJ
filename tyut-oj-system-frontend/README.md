@@ -1,5 +1,10 @@
 # tyut-oj-system-frontend
 
+## 一键生成API调用代码
+```shell
+openapi --input http://localhost:8101/api/v2/api-docs --output ./generated --client axios
+```
+
 ## Project setup
 ```
 npm install

@@ -1,6 +1,5 @@
 package com.tyut.ojcodebox.model;
 
-import com.tyut.ojcodebox.JudgeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

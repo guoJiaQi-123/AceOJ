@@ -79,13 +79,14 @@ import { defineProps, onMounted, ref, withDefaults } from "vue";
 import {
   QuestionControllerService,
   QuestionSubmitAddRequest,
-  QuestionSumitControllerService,
   QuestionVO,
 } from "@/generated";
 import { Message } from "@arco-design/web-vue";
 import CodeEditor from "@/components/CodeEditor.vue";
 import MdViewer from "@/components/MdViewer.vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const question = ref<QuestionVO>();
 const form = ref<QuestionSubmitAddRequest>({
   language: "java",
@@ -102,12 +103,15 @@ const props = withDefaults(defineProps<Props>(), {
 
 const doSubmit = async () => {
   if (!question.value?.id) return;
-  const res = await QuestionSumitControllerService.doQuestionSumitUsingPost({
+  const res = await QuestionControllerService.doQuestionSumitUsingPost({
     ...form.value,
     questionId: question.value.id,
   });
   if (res.code === 0) {
     Message.success("提交成功");
+    router.push({
+      path: `/`,
+    });
   } else {
     Message.error("提交失败");
   }

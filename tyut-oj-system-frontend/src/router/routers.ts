@@ -5,6 +5,7 @@ import UserLoginView from "@/views/user/UserLoginView.vue";
 import UserRegisterView from "@/views/user/UserRegisterView.vue";
 import QuestionView from "../views/question/QuestionView.vue";
 import ViewQuestionView from "@/views/question/ViewQuestionView.vue";
+import QuestionsSubmitView from "@/views/question/QuestionsSubmitView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -32,7 +33,7 @@ export const routes: Array<RouteRecordRaw> = [
     // 浏览题目页面，相当于首页，需要在导航栏显示
     path: "/",
     name: "首页",
-    component: QuestionView,
+    component: QuestionsSubmitView,
   },
   {
     // 浏览题目页面，相当于首页，需要在导航栏显示

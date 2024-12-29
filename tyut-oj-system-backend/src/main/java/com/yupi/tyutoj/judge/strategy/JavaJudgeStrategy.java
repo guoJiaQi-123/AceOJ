@@ -8,6 +8,7 @@ import com.yupi.tyutoj.model.entity.Question;
 import com.yupi.tyutoj.model.enums.JudgeInfoMessageEnum;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -26,9 +27,9 @@ public class JavaJudgeStrategy implements JudgeStrategy {
     public JudgeInfo doJudge(JudgeContext judgeContext) {
         JudgeInfo judgeInfo = judgeContext.getJudgeInfo();
         // 真实消耗内存
-        Long RealConsumedMemory = judgeInfo.getMemory();
+        Long RealConsumedMemory = Optional.ofNullable(judgeInfo.getMemory()).orElse(0L);
         // 真实消耗时间
-        Long RealConsumedTime = judgeInfo.getTime();
+        Long RealConsumedTime = Optional.ofNullable(judgeInfo.getTime()).orElse(0L);
         // 程序运行输出用例
         List<String> runningOutputList = judgeContext.getOutputList();
         List<JudgeCase> judgeCaseList = judgeContext.getJudgeCaseList();

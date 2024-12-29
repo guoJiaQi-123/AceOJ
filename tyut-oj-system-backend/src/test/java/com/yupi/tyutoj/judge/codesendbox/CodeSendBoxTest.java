@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,10 +36,17 @@ class CodeSendBoxTest {
     void executeCode2() {
         CodeSendBox codeSendBox = CodeSendBoxFactory.newInstance(type);
         ExecuteCodeRequest executeCodeRequest = ExecuteCodeRequest.builder()
-                .code("xxx")
+                .code("public class Main {\n" +
+                        "    public static void main(String[] args) {\n" +
+                        "        int a = Integer.parseInt(args[0]);\n" +
+                        "        int b = Integer.parseInt(args[1]);\n" +
+                        "        System.out.println(a + b);\n" +
+                        "    }\n" +
+                        "}\n")
                 .language("java")
-                .inputList(new ArrayList<>())
+                .inputList(Arrays.asList("1 2", "3 4"))
                 .build();
         ExecuteCodeResponse executeCodeResponse = codeSendBox.executeCode(executeCodeRequest);
+        System.out.println(executeCodeResponse);
     }
 }

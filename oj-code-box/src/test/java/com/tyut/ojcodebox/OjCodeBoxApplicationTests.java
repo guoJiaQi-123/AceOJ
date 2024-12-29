@@ -3,6 +3,7 @@ package com.tyut.ojcodebox;
 import cn.hutool.core.io.resource.ResourceUtil;
 import com.tyut.ojcodebox.model.ExecuteCodeRequest;
 import com.tyut.ojcodebox.model.ExecuteCodeResponse;
+import com.tyut.ojcodebox.old.JavaNativeCodeSandboxOld;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,13 +15,13 @@ class OjCodeBoxApplicationTests {
 
 	@Test
 	void contextLoads() {
-		JavaNativeCodeSandbox javaNativeCodeSandbox = new JavaNativeCodeSandbox();
+		JavaNativeCodeSandboxOld javaNativeCodeSandboxOld = new JavaNativeCodeSandboxOld();
 		ExecuteCodeRequest executeCodeRequest = new ExecuteCodeRequest();
 		executeCodeRequest.setInputList(Arrays.asList("1 2", "3 4"));
 		String code = ResourceUtil.readStr("simplecodetest/Main.java", StandardCharsets.UTF_8);
 		executeCodeRequest.setCode(code);
 		executeCodeRequest.setLanguage("java");
-		ExecuteCodeResponse executeCodeResponse = javaNativeCodeSandbox.executeCode(executeCodeRequest);
+		ExecuteCodeResponse executeCodeResponse = javaNativeCodeSandboxOld.executeCode(executeCodeRequest);
 		System.out.println(executeCodeResponse);
 	}
 
