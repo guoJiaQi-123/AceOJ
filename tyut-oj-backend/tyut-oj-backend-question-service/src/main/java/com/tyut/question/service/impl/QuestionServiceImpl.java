@@ -17,7 +17,7 @@ import com.tyut.model.vo.QuestionVO;
 import com.tyut.model.vo.UserVO;
 import com.tyut.question.mapper.QuestionMapper;
 import com.tyut.question.service.QuestionService;
-import com.tyut.serviceclient.service.UserService;
+import com.tyut.serviceclient.service.FeignUserClient;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,7 +42,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     private final static Gson GSON = new Gson();
 
     @Resource
-    private UserService userService;
+    private FeignUserClient feignUserClient;
 
     /**
      * 校验题目是否合法
@@ -130,12 +130,10 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         Long userId = question.getUserId();
         User user = null;
         if (userId != null && userId > 0) {
-            user = userService.getById(userId);
+            user = feignUserClient.getById(userId);
         }
-        UserVO userVO = userService.getUserVO(user);
+        UserVO userVO = feignUserClient.getUserVO(user);
         questionVO.setUserVO(userVO);
-        // 2. 已登录，获取用户点赞、收藏状态
-        User loginUser = userService.getLoginUserPermitNull(request);
         return questionVO;
     }
 
@@ -156,30 +154,11 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         Set<Long> userIdSet = questionList.stream()
                 .map(Question::getUserId)
                 .collect(Collectors.toSet());
-        Map<Long, List<User>> userIdUserListMap = userService.listByIds(userIdSet).stream()
+        Map<Long, List<User>> userIdUserListMap = feignUserClient.listByIds(userIdSet).stream()
                 .collect(Collectors.groupingBy(User::getId));
         // 2. 已登录，获取用户点赞、收藏状态
         Map<Long, Boolean> questionIdHasThumbMap = new HashMap<>();
         Map<Long, Boolean> questionIdHasFavourMap = new HashMap<>();
-        User loginUser = userService.getLoginUserPermitNull(request);
-        if (loginUser != null) {
-            Set<Long> questionIdSet = questionList.stream()
-                    .map(Question::getId)
-                    .collect(Collectors.toSet());
-            loginUser = userService.getLoginUser(request);
-//            // 获取点赞
-//            QueryWrapper<QuestionThumb> questionThumbQueryWrapper = new QueryWrapper<>();
-//            questionThumbQueryWrapper.in("questionId", questionIdSet);
-//            questionThumbQueryWrapper.eq("userId", loginUser.getId());
-//            List<QuestionThumb> questionQuestionThumbList = questionThumbMapper.selectList(questionThumbQueryWrapper);
-//            questionQuestionThumbList.forEach(questionQuestionThumb -> questionIdHasThumbMap.put(questionQuestionThumb.getQuestionId(), true));
-//            // 获取收藏
-//            QueryWrapper<QuestionFavour> questionFavourQueryWrapper = new QueryWrapper<>();
-//            questionFavourQueryWrapper.in("questionId", questionIdSet);
-//            questionFavourQueryWrapper.eq("userId", loginUser.getId());
-//            List<QuestionFavour> questionFavourList = questionFavourMapper.selectList(questionFavourQueryWrapper);
-//            questionFavourList.forEach(questionFavour -> questionIdHasFavourMap.put(questionFavour.getQuestionId(), true));
-        }
         // 填充信息
         List<QuestionVO> questionVOList = questionList.stream().map(question -> {
             QuestionVO questionVO = QuestionVO.objToVo(question);
@@ -188,7 +167,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
             if (userIdUserListMap.containsKey(userId)) {
                 user = userIdUserListMap.get(userId).get(0);
             }
-            questionVO.setUserVO(userService.getUserVO(user));
+            questionVO.setUserVO(feignUserClient.getUserVO(user));
 //            questionVO.setHasThumb(questionIdHasThumbMap.getOrDefault(question.getId(), false));
 //            questionVO.setHasFavour(questionIdHasFavourMap.getOrDefault(question.getId(), false));
             return questionVO;

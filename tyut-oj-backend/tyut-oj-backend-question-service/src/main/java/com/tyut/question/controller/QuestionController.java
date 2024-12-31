@@ -2,8 +2,8 @@ package com.tyut.question.controller;
 
 
 import cn.hutool.json.JSONUtil;
-import com.alibaba.nacos.shaded.com.google.gson.Gson;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.gson.Gson;
 import com.tyut.common.annotation.AuthCheck;
 import com.tyut.common.common.BaseResponse;
 import com.tyut.common.common.DeleteRequest;
@@ -20,9 +20,9 @@ import com.tyut.model.entity.QuestionSubmit;
 import com.tyut.model.entity.User;
 import com.tyut.model.vo.QuestionSubmitVO;
 import com.tyut.model.vo.QuestionVO;
-import com.tyut.serviceclient.service.QuestionService;
-import com.tyut.serviceclient.service.QuestionSubmitService;
-import com.tyut.serviceclient.service.UserService;
+import com.tyut.question.service.QuestionService;
+import com.tyut.question.service.QuestionSubmitService;
+import com.tyut.serviceclient.service.FeignUserClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +38,7 @@ import java.util.List;
  * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
 @RestController
-@RequestMapping("/question")
+@RequestMapping("/")
 @Slf4j
 public class QuestionController {
 
@@ -46,7 +46,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @Resource
-    private UserService userService;
+    private FeignUserClient feignUserClient;
     @Resource
     private Gson gson;
 
@@ -83,7 +83,7 @@ public class QuestionController {
             question.setJudgeConfig(gson.toJson(judgeConfig));
         }
         questionService.validQuestion(question, true);
-        User loginUser = userService.getLoginUser(request);
+        User loginUser = feignUserClient.getLoginUser(request);
         question.setUserId(loginUser.getId());
         question.setFavourNum(0);
         question.setThumbNum(0);
@@ -105,13 +105,13 @@ public class QuestionController {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userService.getLoginUser(request);
+        User user = feignUserClient.getLoginUser(request);
         long id = deleteRequest.getId();
         // 判断是否存在
         Question oldQuestion = questionService.getById(id);
         ThrowUtils.throwIf(oldQuestion == null, ErrorCode.NOT_FOUND_ERROR);
         // 仅本人或管理员可删除
-        if (!oldQuestion.getUserId().equals(user.getId()) && !userService.isAdmin(request)) {
+        if (!oldQuestion.getUserId().equals(user.getId()) && !feignUserClient.isAdmin(user)) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         boolean b = questionService.removeById(id);
@@ -188,8 +188,8 @@ public class QuestionController {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
         //不是本人或者管理员不能获取所有数据
-        User loginUser = userService.getLoginUser(request);
-        if (!question.getUserId().equals(loginUser.getId()) && !userService.isAdmin(loginUser)) {
+        User loginUser = feignUserClient.getLoginUser(request);
+        if (!question.getUserId().equals(loginUser.getId()) && !feignUserClient.isAdmin(loginUser)) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         return ResultUtils.success(question);
@@ -243,7 +243,7 @@ public class QuestionController {
         if (questionQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User loginUser = userService.getLoginUser(request);
+        User loginUser = feignUserClient.getLoginUser(request);
         questionQueryRequest.setUserId(loginUser.getId());
         long current = questionQueryRequest.getCurrent();
         long size = questionQueryRequest.getPageSize();
@@ -286,13 +286,13 @@ public class QuestionController {
         }
         // 参数校验
         questionService.validQuestion(question, true);
-        User loginUser = userService.getLoginUser(request);
+        User loginUser = feignUserClient.getLoginUser(request);
         long id = questionEditRequest.getId();
         // 判断是否存在
         Question oldQuestion = questionService.getById(id);
         ThrowUtils.throwIf(oldQuestion == null, ErrorCode.NOT_FOUND_ERROR);
         // 仅本人或管理员可编辑
-        if (!oldQuestion.getUserId().equals(loginUser.getId()) && !userService.isAdmin(loginUser)) {
+        if (!oldQuestion.getUserId().equals(loginUser.getId()) && !feignUserClient.isAdmin(loginUser)) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         boolean result = questionService.updateById(question);
@@ -314,7 +314,7 @@ public class QuestionController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         // 登录才能点赞
-        final User loginUser = userService.getLoginUser(request);
+        final User loginUser = feignUserClient.getLoginUser(request);
         long questionId = questionSubmitAddRequest.getQuestionId();
         long questionSubmitId = questionSubmitService.doQuestionSubmit(questionSubmitAddRequest, loginUser);
         return ResultUtils.success(questionSubmitId);
@@ -333,7 +333,7 @@ public class QuestionController {
         //从数据提取到原始的分页信息
         Page<QuestionSubmit> questionSubmitPage = questionSubmitService.page(new Page<>(current, size),
                 questionSubmitService.getQueryWrapper(questionSubmitQueryRequest));
-        final User loginUser = userService.getLoginUser(request);
+        final User loginUser = feignUserClient.getLoginUser(request);
         //返回脱敏信息
         return ResultUtils.success(questionSubmitService.getQuestionSubmitVOPage(questionSubmitPage, loginUser));
     }

@@ -20,8 +20,8 @@ import com.tyut.model.vo.QuestionSubmitVO;
 import com.tyut.question.mapper.QuestionSubmitMapper;
 import com.tyut.question.service.QuestionService;
 import com.tyut.question.service.QuestionSubmitService;
-import com.tyut.serviceclient.service.JudgeService;
-import com.tyut.serviceclient.service.UserService;
+import com.tyut.serviceclient.service.FeignJudgeClient;
+import com.tyut.serviceclient.service.FeignUserClient;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Lazy;
@@ -44,10 +44,10 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
     @Resource
     private QuestionService questionService;
     @Resource
-    private UserService userService;
+    private FeignUserClient feignUserClient;
     @Resource
     @Lazy
-    private JudgeService judgeService;
+    private FeignJudgeClient feignJudgeClient;
 
     /**
      * 提交题目
@@ -87,7 +87,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         Long questionSubmitId = questionSubmit.getId();
         //  执行判题服务
         CompletableFuture.runAsync(() -> {
-            judgeService.doJudge(questionSubmitId);
+            feignJudgeClient.doJudge(questionSubmitId);
         });
         return questionSubmitId;
     }
@@ -125,7 +125,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         //仅本人和管理员能看见自己的答案
         Long userId = loginUser.getId();
         //处理脱敏
-        if (!Objects.equals(userId, questionSubmit.getUserId()) && !userService.isAdmin(loginUser)) {
+        if (!Objects.equals(userId, questionSubmit.getUserId()) && !feignUserClient.isAdmin(loginUser)) {
             questionSubmitVO.setCode(null);
         }
         return questionSubmitVO;
