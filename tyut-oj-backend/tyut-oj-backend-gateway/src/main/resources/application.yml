@@ -1,7 +1,32 @@
+server:
+  port: 9991
 spring:
   application:
     name: oj-backend-gateway
+  main:
+    web-application-type: reactive #Gateway和springMVC不兼容
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: oj-backend-user-service
+          uri: lb://oj-backend-user-service
+          predicates:
+            - Path=/api/user/**
+        - id: oj-backend-question-service
+          uri: lb://oj-backend-question-service
+          predicates:
+            - Path=/api/question/**
+        - id: oj-backend-judge-service
+          uri: lb://oj-backend-judge-service
+          predicates:
+            - Path=/api/judge/**
+knife4j:
+  gateway:
+    enabled: true
+    strategy: discover
+    discover:
+      enabled: true
+      version: swagger2

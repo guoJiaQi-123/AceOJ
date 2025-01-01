@@ -21,8 +21,6 @@ public class ExampleCodeSendBox implements CodeSendBox {
         List<String> inputList = executeCodeRequest.getInputList();
         String language = executeCodeRequest.getLanguage();
         String code = executeCodeRequest.getCode();
-
-
         ExecuteCodeResponse executeCodeResponse = new ExecuteCodeResponse();
         executeCodeResponse.setOutputList(inputList);
         executeCodeResponse.setMessage("成功");

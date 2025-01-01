@@ -22,7 +22,7 @@ public class RemoteCodeSendBox implements CodeSendBox {
     @Override
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
         System.out.println("远程代码沙箱");
-        String url = "http://localhost:8090/judgment";
+        String url = "http://192.168.66.130:8090/judgment";
         String body = JSONUtil.toJsonStr(executeCodeRequest);
         String executeCodeResponse = HttpUtil.createPost(url)
                 .header(AUTH_REQUEST_HEADER, AUTH_REQUEST_SECRET)

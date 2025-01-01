@@ -10,7 +10,7 @@
             src="@/assets/logo.png"
             style="color: white"
           />
-          <h1 class="title">TYUT - OJ在线判题平台</h1>
+          <h1 class="title">AceCoding代码练习平台</h1>
         </a-space>
       </a-layout-header>
       <!--动态页面-->
@@ -18,7 +18,7 @@
         <router-view />
       </a-layout-content>
       <!--页脚-->
-      <a-layout-footer class="footer"> Tyut —— OJ在线判题系统</a-layout-footer>
+      <a-layout-footer class="footer">AceCoding代码练习平台</a-layout-footer>
     </a-layout>
   </div>
 </template>

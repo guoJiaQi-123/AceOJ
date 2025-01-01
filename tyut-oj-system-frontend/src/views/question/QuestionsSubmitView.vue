@@ -48,11 +48,58 @@
           <a-tag color="#168cff"> 失败 </a-tag>
         </span>
       </template>
-      <template #judgeInfo="{ record }">
-        {{ JSON.stringify(record.judgeInfo) }}
+      <template #memory="{ record }">
+        <span></span>
+        <span v-if="record.judgeInfo.memory !== null">
+          <a-tag color="#00b42a">
+            {{ record.judgeInfo.memory }}
+          </a-tag>
+        </span>
+        <span v-else>
+          <a-tag color="#f53f3f">
+            {{ JSON.stringify(record.judgeInfo.memory) }}</a-tag
+          >
+        </span>
+      </template>
+      <template #time="{ record }">
+        <span></span>
+        <span v-if="record.judgeInfo.time !== null">
+          <a-tag color="#00b42a">
+            {{ record.judgeInfo.time }}
+          </a-tag>
+        </span>
+        <span v-else>
+          <a-tag color="#f53f3f">
+            {{ JSON.stringify(record.judgeInfo.time) }}
+          </a-tag>
+        </span>
+      </template>
+      <template #ac="{ record }">
+        <span></span>
+        <span v-if="record.judgeInfo.message == 'Accepted'">
+          <a-tag color="#00b42a"> Accepted </a-tag>
+        </span>
+        <span v-else-if="record.judgeInfo.message == 'Wrong Answer'">
+          <a-tag color="#f53f3f"> Wrong Answer </a-tag>
+        </span>
+        <span v-else-if="record.judgeInfo.message == 'Compile Error'">
+          <a-tag color="#f53f3f"> Compile Error </a-tag>
+        </span>
+        <span v-else-if="record.judgeInfo.message == 'Memory Limit Exceeded'">
+          <a-tag color="#f53f3f"> Memory Limit Exceeded </a-tag>
+        </span>
+        <span v-else-if="record.judgeInfo.message == 'Time Limit Exceeded'">
+          <a-tag color="#f53f3f"> Time Limit Exceeded </a-tag>
+        </span>
       </template>
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD") }}
+      </template>
+      <template #language="{ record }">
+        <span></span>
+        <span v-if="record.language == 'java'">
+          <a-tag color="#1456F0"> {{ record.language }} </a-tag>
+        </span>
       </template>
     </a-table>
   </div>
@@ -103,11 +150,22 @@ const columns = [
   },
   {
     title: "编程语言",
-    dataIndex: "language",
+    slotName: "language",
   },
   {
-    title: "判题信息",
-    slotName: "judgeInfo",
+    title: "是否通过",
+    dataIndex: "judgeInfo",
+    slotName: "ac",
+  },
+  {
+    title: "内存消耗",
+    dataIndex: "judgeInfo",
+    slotName: "memory",
+  },
+  {
+    title: "时间消耗",
+    dataIndex: "judgeInfo",
+    slotName: "time",
   },
   {
     title: "判题状态",
@@ -116,7 +174,6 @@ const columns = [
   {
     title: "题目 id",
     dataIndex: "questionId",
-    slotName: "questionId",
   },
   {
     title: "提交者 id",

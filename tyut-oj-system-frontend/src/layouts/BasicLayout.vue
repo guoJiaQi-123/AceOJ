@@ -12,7 +12,7 @@
       </a-layout-content>
 
       <!--页脚-->
-      <a-layout-footer class="footer"> Tyut —— OJ在线判题系统</a-layout-footer>
+      <a-layout-footer class="footer">AceCoding代码练习平台</a-layout-footer>
     </a-layout>
   </div>
 </template>

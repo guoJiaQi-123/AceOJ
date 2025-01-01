@@ -24,13 +24,13 @@ import com.tyut.serviceclient.service.FeignJudgeClient;
 import com.tyut.serviceclient.service.FeignUserClient;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -48,6 +48,9 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
     @Resource
     @Lazy
     private FeignJudgeClient feignJudgeClient;
+    @Resource
+    private RabbitTemplate rabbitTemplate;
+
 
     /**
      * 提交题目
@@ -86,10 +89,17 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         }
         Long questionSubmitId = questionSubmit.getId();
         //  执行判题服务
-        CompletableFuture.runAsync(() -> {
-            feignJudgeClient.doJudge(questionSubmitId);
-        });
+//        CompletableFuture.runAsync(() -> {
+//            feignJudgeClient.doJudge(questionSubmitId);
+//        });
+        String exchange = "question_message";
+        String routingKey = "my_routingKey";
+        sendMessage(exchange, routingKey, String.valueOf(questionSubmitId));
         return questionSubmitId;
+    }
+
+    public void sendMessage(String exchange, String routingKey, String message) {
+        rabbitTemplate.convertAndSend(exchange, routingKey, message);
     }
 
     /**

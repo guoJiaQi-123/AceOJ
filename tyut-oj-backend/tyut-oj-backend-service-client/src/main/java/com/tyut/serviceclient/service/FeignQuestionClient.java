@@ -6,6 +6,7 @@ import com.tyut.model.entity.QuestionSubmit;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -24,7 +25,7 @@ public interface FeignQuestionClient {
     @GetMapping("/question_submit/get/id")
     QuestionSubmit getQuestionSubmitById(@RequestParam("questionSubmitId") long questionSubmitId);
 
-    @PostMapping("/update/id")
-    boolean updateQuestionSubmitById(@RequestParam("questionSubmit") QuestionSubmit questionSubmit);
+    @PostMapping("/question_submit/update/id")
+    boolean updateQuestionSubmitById(@RequestBody QuestionSubmit questionSubmitUpdate);
 
 }

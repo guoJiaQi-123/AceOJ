@@ -14,7 +14,7 @@
           <div @click="logo()">
             <div class="title-bar">
               <img alt="" class="logo" src="@/assets/logo.png" />
-              <div class="title">TYUT - OJ在线判题平台</div>
+              <div class="title">AceCoding 代码练习平台</div>
             </div>
           </div>
         </a-menu-item>

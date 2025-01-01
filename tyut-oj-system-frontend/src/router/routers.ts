@@ -42,15 +42,6 @@ export const routes: Array<RouteRecordRaw> = [
     component: QuestionView,
   },
   {
-    // 创建题目页面，需要显示在导航栏
-    path: "/add/question",
-    name: "创建题目",
-    component: () => import("../views/question/AddQuestionView.vue"),
-    meta: {
-      access: AccessEnum.USER,
-    },
-  },
-  {
     // 管理题目页面，需要显示在导航栏
     path: "/manage/question",
     name: "管理题目",
@@ -59,6 +50,16 @@ export const routes: Array<RouteRecordRaw> = [
       access: AccessEnum.USER,
     },
   },
+  {
+    // 创建题目页面，需要显示在导航栏
+    path: "/add/question",
+    name: "创建题目",
+    component: () => import("../views/question/AddQuestionView.vue"),
+    meta: {
+      access: AccessEnum.USER,
+    },
+  },
+
   {
     // 更新题目页面，不需要显示在导航栏
     path: "/update/question",

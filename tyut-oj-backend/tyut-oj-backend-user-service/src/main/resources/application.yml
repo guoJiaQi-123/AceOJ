@@ -1,6 +1,16 @@
 # 公共配置文件
-# @author <a href="https://github.com/liyupi">程序员鱼皮</a>
-# @from <a href="https://yupi.icu">编程导航知识星球</a>
+# @author 
+# @from 
+server:
+  address: 0.0.0.0
+  port: 9992
+  servlet:
+    context-path: /api/user
+    # cookie 30 天过期
+    session:
+      cookie:
+        max-age: 2592000
+        path: /api
 spring:
   application:
     name: oj-backend-user-service
@@ -16,6 +26,7 @@ spring:
     store-type: redis
     # 30 天过期
     timeout: 2592000
+
   # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -39,15 +50,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-server:
-  address: 0.0.0.0
-  port: 9990
-  servlet:
-    context-path: /api/user
-    # cookie 30 天过期
-    session:
-      cookie:
-        max-age: 2592000
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
@@ -61,3 +63,5 @@ mybatis-plus:
 # 代码沙箱配置
 codesandbox:
   type: remote
+knife4j:
+  enable: true

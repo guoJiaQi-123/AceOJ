@@ -1,5 +1,6 @@
 package com.tyut.judge;
 
+import com.tyut.judge.rabbitmq.RabbitMQInit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -17,6 +18,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class OjBackendJudgeApplication {
 
     public static void main(String[] args) {
+        // 项目启动，初始化消息队列
+        RabbitMQInit.doInitRabbitMQ();
         SpringApplication.run(OjBackendJudgeApplication.class, args);
     }
 

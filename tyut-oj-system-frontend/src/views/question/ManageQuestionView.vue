@@ -48,6 +48,9 @@
           </a-button>
         </a-space>
       </template>
+      <template #createTime="{ record }">
+        {{ moment(record.createTime).format("YYYY-MM-DD") }}
+      </template>
     </a-table>
   </div>
 </template>
@@ -56,6 +59,7 @@ import { onMounted, ref, watchEffect } from "vue";
 import { Question, QuestionControllerService } from "@/generated";
 import { Message } from "@arco-design/web-vue";
 import { useRouter } from "vue-router";
+import moment from "moment/moment";
 
 const total = ref(0);
 const router = useRouter();
@@ -127,7 +131,7 @@ const columns = [
   },
   {
     title: "创建时间",
-    dataIndex: "createTime",
+    slotName: "createTime",
   },
   {
     title: "操作",
